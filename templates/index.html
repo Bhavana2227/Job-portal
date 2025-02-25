@@ -1,0 +1,102 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Job Portal</title>
+    <style>/* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        /* Card Container */
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+        }
+        
+        /* Headings */
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        
+        /* Links */
+        a {
+            display: inline-block;
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 8px;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        a:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Button Styles */
+        a[href*="login"], a[href*="register"] {
+            background: #ff4b2b;
+            border: 2px solid #ff4b2b;
+        }
+        
+        a[href*="login"]:hover, a[href*="register"]:hover {
+            background: transparent;
+            border-color: white;
+        }
+        
+        a[href*="logout"] {
+            background: #ff4757;
+            border: 2px solid #ff4757;
+        }
+        
+        a[href*="logout"]:hover {
+            background: transparent;
+        }
+        
+        a[href*="job_list"], a[href*="post_job"] {
+            background: #1dd1a1;
+            border: 2px solid #1dd1a1;
+        }
+        
+        a[href*="job_list"]:hover, a[href*="post_job"]:hover {
+            background: transparent;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .container {
+                width: 90%;
+            }
+        }
+        </style>
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> -->
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Job Portal</h1>
+        {% if user.is_authenticated %}
+            <p>Hello, {{ user.name }}! <a href="{{ url_for('logout') }}">Logout</a></p>
+            <a href="{{ url_for('job_list') }}">View Jobs</a> 
+            <a href="{{ url_for('post_job') }}">Post a Job</a>
+        {% else %}
+            <a href="{{ url_for('login') }}">Login</a> 
+            <a href="{{ url_for('register') }}">Register</a>
+        {% endif %}
+    </div>
+</body>
+</html>
+
+
